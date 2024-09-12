@@ -1,81 +1,50 @@
-# Turborepo starter
+# Sin Validator
 
-This is an official starter Turborepo.
+This project uses Turborepo to manage a monorepo structure with multiple applications and shared packages.
 
-## Using this example
+It consists of an express backend and a vue frontend, written in Typescript.
 
-Run the following command:
+The User can input their SIN and check if it's valid. They will receive realtime input validation as they type, which is provided by the frontend.
 
-```sh
-npx create-turbo@latest
-```
+The User can also click the 'Validate' button at any time, to check if their SIN is valid. This will trigger a request to the backend and display the result via a toast.
 
-## What's inside?
+Both the frontend and backend share a common package for utility functions, located at `packages/shared-utils`. Mainly `validateSin.ts` which is used for the SIN validation logic.
 
-This Turborepo includes the following packages/apps:
+## Prerequisites
 
-### Apps and Packages
+Before you begin, ensure you have the following installed:
+- Node.js (latest LTS version recommended)
+- npm (comes with Node.js)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Getting Started
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Follow these steps to set up and run the project:
 
-### Utilities
+1. Install Turbo globally:
+   ```
+   npm install -g turbo
+   ```
 
-This Turborepo has some additional tools already setup for you:
+2. Clone the repository and navigate to the project root.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+3. Install dependencies:
+   ```
+   npm install
+   ```
 
-### Build
+4. Run the development servers:
+   ```
+   turbo run dev
+   ```
 
-To build all apps and packages, run the following command:
+This command will start the development servers for all applications in the monorepo concurrently.
 
-```
-cd my-turborepo
-pnpm build
-```
+The frontend will run on `http://localhost:5173` and the backend on `http://localhost:3000`.
 
-### Develop
+## Project Structure
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- `apps/`: Contains individual applications
+  - `frontend/`: Frontend application
+  - `backend/`: Backend application
+- `packages/`: Shared packages used across applications
+  - `shared-utils/`: Shared utilities
